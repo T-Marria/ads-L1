@@ -140,9 +140,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="Functions.h" />
     <ClInclude Include="Matrix.h" />
-    <ClInclude Include="Menu.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Functions.cpp" />

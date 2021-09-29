@@ -1,35 +1,56 @@
+//=)
+//sheeeesh
+
 #include <locale.h>
 #include <iostream>
-#include "Functions.h"
-#include "Menu.h"
+#include <ostream>
 #include "Matrix.h"
 using namespace std;
+
+bool control(char* xn);
+int checker();
+ostream& operator << (ostream& s, Matrix& matrix);
+
+int get_key();
+int menu1();
+int menu2();
 
 Matrix RandomMatrix(int rows, int cols) {
     Matrix matrix(rows, cols);
     for (int i = 0; i < rows; i++)
-        for (int j = 0; j < cols; j++)
-            matrix(i, j) = rand() % 20;
+        for (int j = 0; j < cols; j++) {
+            int h = rand() % 20;
+            matrix(i, j) = h;
+        }
     return matrix;
 }
 
-Matrix MatrixGeneration() {
-    Matrix matrix;
-    int rows, cols;
-    cout << "Введите размерности матрицы:\n";
-    cout << "Количество строк: ";
-    cin >> rows;
-    cout << "Количество столбцов: ";
-    cin >> cols;
-
-    matrix = RandomMatrix(rows, cols);
-    return matrix;
-}
+//Matrix MatrixGeneration() {
+//    Matrix matrix;
+//    int rows, cols;
+//    cout << "Введите размерности матрицы:\n";
+//    cout << "Количество строк: ";
+//    cin >> rows;
+//    cout << "Количество столбцов: ";
+//    cin >> cols;
+//
+//    matrix = RandomMatrix(rows, cols);
+//    return matrix;
+//}
 
 int main() {
 	setlocale(LC_ALL, "");
 
-    Matrix A, B;
+    Matrix A(2, 2), B(2, 2), C(2, 2);
+    A(0, 0) = 1;
+    A(0, 1) = 2;
+    A(1, 0) = 3;
+    A(1, 1) = 4;
+
+    B(0, 0) = 1;
+    B(0, 1) = 2;
+    B(1, 0) = 3;
+    B(1, 1) = 4;
 
 	while (true) {
         system("cls");
@@ -40,21 +61,22 @@ int main() {
             system("cls");
             cout << "\tГенерация двух случайных матриц указанных размеров для работы.\n\n";
            
-            cout << "Генерация матрицы А.";
+           /* cout << "Генерация матрицы А.\n";
             A = MatrixGeneration();
 
-            cout << "Генерация матрицы B.";
+            cout << "Генерация матрицы B.\n";
             B = MatrixGeneration();
 
-            cout << "Матрицы успешно сгенерированы:\n";
+            cout << "\nМатрицы успешно сгенерированы:\n";
             cout << A;
-            cout << B;
+            cout << B;*/
 
             break;
         }
         case 50: {
             system("cls");
             cout << "\tСложение матриц.\n\n";
+            C = A + B;
 
             break;
         }

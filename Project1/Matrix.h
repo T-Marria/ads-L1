@@ -1,3 +1,4 @@
+#include <iostream>
 #pragma once
 class Matrix {
 private:
@@ -11,14 +12,15 @@ public:
 	int GetRows() const;
 	int GetCols() const;
 	double& operator () (int i, int j);
+	//Matrix operator = (Matrix& rhs);
 	Matrix operator + (Matrix& rhs); // 1) нужна ли ссылка в аргументе?
 	Matrix operator - (Matrix& rhs);
 	Matrix operator * (Matrix rhs);
 	Matrix operator * (double h); // умножение на скаляр. нужно ли через ссылку передавать арг? + обеспечить коммутативность
 	Matrix operator / (double h);
-	friend Matrix operator * (Matrix &matrix, double h);
-	friend Matrix operator / (Matrix& matrix, double h);
+	/*friend Matrix operator * (Matrix &matrix, double h);
+	friend Matrix operator / (Matrix& matrix, double h);*/
 	double tr();
 
-	friend ostream& operator << (ostream& s, const Matrix& matrix);
+	friend std::ostream& operator << (std::ostream& s, const Matrix& matrix);
 };

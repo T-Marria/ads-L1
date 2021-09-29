@@ -59,13 +59,3 @@ int checker()
     int data = (int)atoi(n_data);
     return data;
 }
-
-
-//      Вывод матрицы
-ostream& operator << (ostream& s, Matrix& matrix) {
-    for (int i; i < matrix.GetRows(); i++) {
-        for (int j; j < matrix.GetCols(); j++)
-            s << matrix(i, j)<<"  ";
-        s << "\n";
-    }
-}

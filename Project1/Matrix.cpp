@@ -1,3 +1,4 @@
+#include <iostream>
 #include <stdlib.h>
 #include "Matrix.h"
 
@@ -7,10 +8,13 @@ Matrix::Matrix() {
 	data = NULL;
 }
 Matrix::Matrix(int n, int m) {
-	data = (double**)malloc(n * sizeof(double*));
+	data = new double*[n];
+	for (int i = 0; i < m; i++)
+		data[i] = new double[m];
+	
 	for (int i = 0; i < n; i++)
-		data[i] = (double*)malloc(m * sizeof(double));
-	// + как-то эту память заполнить
+		for (int j = 0; j < m; j++)
+			data[i][j] = 1;
 }
 Matrix::Matrix(Matrix &rhs) {		// надо ли выделять память?
 	n = rhs.n;
@@ -32,6 +36,13 @@ int Matrix::GetCols() const {
 double& Matrix::operator () (int i, int j) {
 	return data[i][j];
 }
+//Matrix Matrix::operator = (Matrix& rhs) {
+//	Matrix result(n, m);
+//	for (int i = 0; i < n; i++)
+//		for (int j = 0; j < m; j++)
+//			result.data[i][j] = rhs.data[i][j];
+//	return result;
+//}
 Matrix Matrix::operator + (Matrix & rhs) {
 	if ((n == rhs.n) && (m == rhs.m)) {
 		Matrix result(n, m); // память пока заполнена мусорными значениями
@@ -89,4 +100,13 @@ double Matrix::tr() {
 	for (int i = 0; i < n; i++)
 		trace += data[i][i];
 	return trace;
+}
+
+std::ostream& operator << (std::ostream& s, Matrix& matrix) {
+	for (int i = 0; i < matrix.GetRows(); i++) {
+		for (int j = 0; j < matrix.GetCols(); j++)
+			s << matrix(i, j) << "  ";
+		s << "\n";
+	}
+	return s;
 }
